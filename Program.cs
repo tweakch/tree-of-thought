@@ -6,6 +6,11 @@
 
 IProblemHandler? problemHandler;
 
+// intialize the argument processor
 var argumentProcessor = new ArgumentProcessor();
-problemHandler = argumentProcessor.ChooseHandler(args);
+
+// choose the handler
+problemHandler = ArgumentProcessor.ChooseHandler(args);
+
+// process the arguments
 argumentProcessor.Process(args, problemHandler);

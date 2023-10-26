@@ -1,5 +1,7 @@
 class FileAndFolderProblemHandler : IProblemHandler
 {
+    public string Name => nameof(FileAndFolderProblemHandler);
+
     public void HandleProblem(string description)
     {
         CreateProblemMd(description);

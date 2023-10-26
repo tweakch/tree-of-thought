@@ -5,7 +5,6 @@
 // Interface segregation (ja)
 // dependency inversion (no)  => next.next
 
-
 class ArgumentProcessor : IProcess
 {
     private static Dictionary<string, IProblemHandler> _handlers = new Dictionary<string, IProblemHandler>

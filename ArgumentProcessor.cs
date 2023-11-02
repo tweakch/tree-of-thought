@@ -11,6 +11,7 @@ class ArgumentProcessor : IProcess
     {
         {"file", new FileAndFolderProblemHandler()},
         {"console", new ConsoleProblemHandler()},
+        //{"youtrack", new YouTrackProblemHandler()}
     };
 
     protected static string ContainsHandler(string[] args)

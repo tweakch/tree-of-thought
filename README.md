@@ -26,6 +26,14 @@ Problem solving
 
 ## DevLog
 
+### 09.11.2023
+
+Agenda:
+
+- merge feature/project-renaming anschauen (Commit: 71d45e50)
+- merge feature/console-host anschauen (Commit: 6360bd87)
+- Unit Tests ausbauen
+
 ### 02.11.2023
 
 #### Primitive Obsession
@@ -53,13 +61,18 @@ interface ICalculate {
 
 ### 31.10.2023
 
-In der .NET-Umgebung gibt es verschiedene Speicherbereiche, in denen Daten gespeichert werden können. Hier ist eine detailliertere Erklärung dieser Bereiche:
+In der .NET-Umgebung gibt es verschiedene Speicherbereiche, in denen Daten gespeichert werden können. Hier ist eine
+detailliertere Erklärung dieser Bereiche:
 
 ### Stack
 
 > ÖV zur Rush Hour, Pringles Packung, Kleiderschrank (LIFO)
 
-Der Stack ist ein Speicherbereich, der für die schnelle Speicherung und Entfernung von Daten optimiert ist. Der Stack folgt dem Last-In-First-Out (LIFO)-Prinzip. Wenn eine Methode aufgerufen wird, wird ein "Stack Frame" für diese Methode erstellt, das alle lokalen Variablen, Parameter und die Rückgabeadresse enthält. Sobald die Methode beendet ist, wird das Stack Frame entfernt (oder "abgebaut"), wodurch der Speicherplatz freigegeben wird. Dies macht den Stack zu einem sehr schnellen, aber beschränkten Speicherbereich.
+Der Stack ist ein Speicherbereich, der für die schnelle Speicherung und Entfernung von Daten optimiert ist. Der Stack
+folgt dem Last-In-First-Out (LIFO)-Prinzip. Wenn eine Methode aufgerufen wird, wird ein "Stack Frame" für diese Methode
+erstellt, das alle lokalen Variablen, Parameter und die Rückgabeadresse enthält. Sobald die Methode beendet ist, wird
+das Stack Frame entfernt (oder "abgebaut"), wodurch der Speicherplatz freigegeben wird. Dies macht den Stack zu einem
+sehr schnellen, aber beschränkten Speicherbereich.
 
 **Typische Elemente im Stack:**
 
@@ -73,7 +86,10 @@ Der Stack ist ein Speicherbereich, der für die schnelle Speicherung und Entfern
 
 > Automatisches Lagerhaus (Managed Heap) mit Lagermitarbeiter (Garbage Collection)
 
-Im Gegensatz zum Stack ist der Heap ein Speicherbereich, der für die langfristige Speicherung von Daten verwendet wird. Der Heap ist flexibler, aber in der Regel langsamer als der Stack. Hier werden Instanzen von Klassen (Referenztypen) gespeichert. Der Heap wird von einem Prozess namens "Garbage Collection" verwaltet, der nicht verwendete Objekte entfernt, um Speicherplatz freizugeben.
+Im Gegensatz zum Stack ist der Heap ein Speicherbereich, der für die langfristige Speicherung von Daten verwendet wird.
+Der Heap ist flexibler, aber in der Regel langsamer als der Stack. Hier werden Instanzen von Klassen (Referenztypen)
+gespeichert. Der Heap wird von einem Prozess namens "Garbage Collection" verwaltet, der nicht verwendete Objekte
+entfernt, um Speicherplatz freizugeben.
 
 **Typische Elemente im Heap:**
 
@@ -83,11 +99,14 @@ Im Gegensatz zum Stack ist der Heap ein Speicherbereich, der für die langfristi
 
 ### Code-Segment
 
-Dies ist der Speicherbereich, in dem der ausführbare Code der Anwendung gespeichert ist. Konstanten (`const`) werden oft direkt in diesem Bereich eingebettet. Das heisst, sie existieren als Teil des Codes und nehmen keinen eigenen Speicherplatz im Stack oder Heap ein.
+Dies ist der Speicherbereich, in dem der ausführbare Code der Anwendung gespeichert ist. Konstanten (`const`) werden oft
+direkt in diesem Bereich eingebettet. Das heisst, sie existieren als Teil des Codes und nehmen keinen eigenen
+Speicherplatz im Stack oder Heap ein.
 
 ### High-Frequency Heap
 
-Dies ist ein spezieller Bereich des Heaps, der für `static` Variablen reserviert ist. Diese Variablen haben eine Lebensdauer, die an die Laufzeit der Anwendung (oder genauer gesagt, an die Lebensdauer der AppDomain) gebunden ist. 
+Dies ist ein spezieller Bereich des Heaps, der für `static` Variablen reserviert ist. Diese Variablen haben eine
+Lebensdauer, die an die Laufzeit der Anwendung (oder genauer gesagt, an die Lebensdauer der AppDomain) gebunden ist.
 
 ### Codebeispiel
 
@@ -157,14 +176,16 @@ Ich habe dir hier noch ein Beispiel-Code. Folgende "Elemente" werden darin verwe
 - `MyConstant` ist eine Konstante, deren Wert direkt im Code eingebettet wird.
 - `MyInstanceVariable` ist eine Instanzvariable, die auf dem Heap gespeichert wird.
 - `localValue` ist eine lokale Variable vom Werttyp, die auf dem Stack gespeichert wird.
-- `localClass` ist eine lokale Variable vom Referenztyp, wobei die Referenz auf dem Stack und das Objekt auf dem Heap gespeichert wird.
+- `localClass` ist eine lokale Variable vom Referenztyp, wobei die Referenz auf dem Stack und das Objekt auf dem Heap
+  gespeichert wird.
 - `myStruct` ist eine Variable vom Werttyp, die auf dem Stack gespeichert wird.
-- `myClass` ist eine Variable vom Referenztyp, wobei die Referenz auf dem Stack und das Objekt auf dem Heap gespeichert wird.
+- `myClass` ist eine Variable vom Referenztyp, wobei die Referenz auf dem Stack und das Objekt auf dem Heap gespeichert
+  wird.
 
 Als Tabelle
 
 | Beispiel             | Elementtyp                    | Speicherort                         | Lebensdauer                                                   |
-| -------------------- | ----------------------------- | ----------------------------------- | ------------------------------------------------------------- |
+|----------------------|-------------------------------|-------------------------------------|---------------------------------------------------------------|
 | `MyStaticVariable`   | Statische Variable            | Spezieller Bereich des Heaps        | Während der gesamten Laufzeit des Programms                   |
 | `MyConstant`         | Konstante                     | Direkt im Code                      | Während der gesamten Laufzeit des Programms                   |
 | `MyInstanceVariable` | Instanzvariable               | Heap                                | Solange die Instanz existiert                                 |
@@ -173,13 +194,13 @@ Als Tabelle
 | `myStruct`           | Variable (Werttyp)            | Stack                               | Solange die Methode ausgeführt wird, in der sie definiert ist |
 | `myClass`            | Variable (Referenztyp)        | Referenz auf Stack, Objekt auf Heap | Solange die Methode ausgeführt wird, in der sie definiert ist |
 
-> **Wichtig**: Entscheidungen über den Speicherort von Elementen werden schlussendlich von der .NET Runtime und dem Just-In-Time-Compiler (JIT) getroffen. Diese Entscheidungen können von vielen Faktoren abhängen, einschliesslich Leistungsoptimierungen, daher ist diese Übersicht eine Vereinfachung.
+> **Wichtig**: Entscheidungen über den Speicherort von Elementen werden schlussendlich von der .NET Runtime und dem
+> Just-In-Time-Compiler (JIT) getroffen. Diese Entscheidungen können von vielen Faktoren abhängen, einschliesslich
+> Leistungsoptimierungen, daher ist diese Übersicht eine Vereinfachung.
 
 ### Weiterführende Infos
 
 [Memory Usage Inside the CLR](https://mattwarren.org/2017/07/10/Memory-Usage-Inside-the-CLR/#:~:text=MANAGED%20DEBUGGING%20with%20WINDBG,explain%20me%20the%20CLR%E2%80%99s%20%E2%80%9CHighFrequencyHeap%E2%80%9D)
-
-
 
 ### 26.10.2023
 

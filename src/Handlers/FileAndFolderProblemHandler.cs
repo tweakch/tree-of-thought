@@ -5,9 +5,8 @@ namespace TreeOfThought.Handlers;
 
 public class FileAndFolderProblemHandler : IProblemHandler
 {
-    ImmutableHashSet
-    public string Name => nameof(FileAndFolderProblemHandler);
-    public IReadOnlyList<ProblemSolvingCapability>? Capabilities { get; } = new ProblemSolvingCapability[] { };
+    public string Name => "FileAndFolderProblemHandler";
+    public IReadOnlyList<ProblemSolvingCapability>? Capabilities { get; } = new List<ProblemSolvingCapability>();
 
     public void HandleProblem(string description)
     {

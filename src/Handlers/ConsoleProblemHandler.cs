@@ -2,8 +2,9 @@ using TreeOfThought.Abstractions;
 
 namespace TreeOfThought.Handlers;
 
-class ConsoleProblemHandler : IProblemHandler
+public class ConsoleProblemHandler : IProblemHandler
 {
+    // Todo: push member up
     public string Name => nameof(ConsoleProblemHandler);
     public IReadOnlyList<ProblemSolvingCapability>? Capabilities { get; } = Array.Empty<ProblemSolvingCapability>();
 

@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\src\tree-of-thought.csproj" />
-      <ProjectReference Include="..\tree-of-thought.csproj" />
     </ItemGroup>
 
 </Project>

@@ -2,9 +2,10 @@ using TreeOfThought.Abstractions;
 
 namespace TreeOfThought.Handlers;
 
-internal class GitHubProblemHandler : IProblemHandler
+public class GitHubProblemHandler : IProblemHandler
 {
-    public string Name { get; }
+    // Todo: push member up
+    public string Name => nameof(GitHubProblemHandler);
     public IReadOnlyList<ProblemSolvingCapability>? Capabilities { get; } = new List<ProblemSolvingCapability>();
 
     public void HandleProblem(string description)

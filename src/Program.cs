@@ -1,29 +1,15 @@
-﻿using TreeOfThought;
-using TreeOfThought.Abstractions;
-using TreeOfThought.Handlers;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using TreeOfThought.Services;
 
-if (args.Length == 0)
-{
-    Console.WriteLine("No arguments provided. Exiting.");
-    return;
-}
+var builder = Host.CreateApplicationBuilder(args);
 
-var handlers = new Dictionary<string, IProblemHandler>
-{
-    {"file", new FileAndFolderProblemHandler()},
-    {"console", new ConsoleProblemHandler()},
-    {"youtrack", new YouTrackProblemHandler()},
-    {"github", new GitHubProblemHandler()},
-};
+builder.Services.AddHostedService<ExampleHostedService>();
 
-var chooser = new HandlerChooser(handlers);
-
-// choose the handler
-var problemHandler = chooser.ChooseHandler(args);
-
-// intialize the argument processor
 // TODO: 
-var argumentProcessor = new ArgumentProcessor();
+builder.Configuration.AddCommandLine(args);
 
-// process the arguments
-argumentProcessor.Process(args, problemHandler);
+using var host = builder.Build();
+
+await host.RunAsync();

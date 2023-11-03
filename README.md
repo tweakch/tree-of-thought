@@ -6,11 +6,52 @@ Problem solving
 
 > dotnet run -- --problem "Test"
 
-> dotnet run -- --problem "Test" --tree-of-thought
+> dotnet run -- --problem "log time" --handler "console"
+
+> dotnet run -- --problem "Erstelle 10 Ordner" --handler "file"
+
+> dotnet run -- --handler "youtrack" --problem "User Story: Als x möchte ich Y > 
+
+### Ziel UseCase
+
+> dotnet run -- --userstory "Als x möchte Y"
+> POST cmiag.youtrack.com/api/issues
+> Console >> TicketId
+> Console >> Link
+
+> dotnet run -- --prompt "Create User Story "Als x möchte Y"
+> POST cmiag.youtrack.com/api/issues
+> Console >> TicketId
+> Console >> Link
 
 ## DevLog
 
 ### 02.11.2023
+
+#### Primitive Obsession
+
+```cs
+
+// Dieser Code riecht nach "Primitiver Obsession". 
+string lat = "18.202020202";
+string lon = "47.020202020";
+
+string lat2 = "19.0";
+string lon2 = "50";
+
+interface ICalculate {
+    string DistanceGeodesic(string lat1, string lon1, string lat2, string lon2);
+    string GeodesicArea(string[] latLongs, double d);
+}
+
+// Besser
+interface ICalculate {
+    GeoDistance CalculateGeodesic(CartesianPoint point1, CartesianPoint point2);
+    GeoPolygon GeodesicArea(CartesianPoint[] points);
+}
+```
+
+### 31.10.2023
 
 In der .NET-Umgebung gibt es verschiedene Speicherbereiche, in denen Daten gespeichert werden können. Hier ist eine detailliertere Erklärung dieser Bereiche:
 

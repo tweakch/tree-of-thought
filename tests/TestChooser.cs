@@ -1,6 +1,6 @@
 using TreeOfThought.Abstractions;
 
-namespace tree_of_thought_tests;
+namespace TreeOfThought.Tests;
 
 public class TestChooser : IChooseHandler
 {

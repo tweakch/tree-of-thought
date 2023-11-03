@@ -1,8 +1,7 @@
-using TreeOfThought;
 using TreeOfThought.Abstractions;
 using TreeOfThought.Handlers;
 
-namespace tree_of_thought_tests;
+namespace TreeOfThought.Tests;
 
 public class Tests
 {
@@ -19,7 +18,7 @@ public class Tests
     public void Setup()
     {
     }
-    
+
     [Test]
     public void ChooseHandler_Returns_YouTrackHandler_When_Args_Is_YouTrack()
     {
@@ -71,4 +70,36 @@ public class Tests
         // Assert
         Assert.That(handler?.GetType().Name, Is.EqualTo(nameof(TestHandler)));
     }
+    
+    //  [TestCase("file")]
+    //  [TestCase("console")]
+    //  [TestCase("youtrack")]
+    //  [TestCase("github")]
+    //  public void ContainsHandler_Returns_True_When_Args_Contains_Handler(string handler)
+    //  {
+    //      // Arrange
+    //      var chooser = new HandlerChooser(_handlers);
+    //
+    //      // Act
+    //      var containsHandler = chooser.ContainsHandler(new string[]{"--handler", handler});
+    //      
+    //      // Assert
+    //      Assert.That(containsHandler, Is.EqualTo(handler));
+    //  }
+    //
+    //  [TestCase("file", nameof(FileAndFolderProblemHandler))]
+    //  [TestCase("console", nameof(ConsoleProblemHandler))]
+    //  [TestCase("youtrack", nameof(YouTrackProblemHandler))]
+    //  [TestCase("github", nameof(GitHubProblemHandler))]
+    //  public void ChooseHandler_Returns_Handler_When_Args_Is_Handler(string handler, string expectedHandler)
+    // {
+    //     // Arrange
+    //     var chooser = new HandlerChooser(_handlers);
+    //
+    //     // Act
+    //     var problemHandler = chooser.ChooseHandler(new string[]{"--handler", handler});
+    //
+    //     // Assert
+    //     Assert.That(problemHandler?.GetType().Name, Is.EqualTo(expectedHandler));
+    // }
 }

@@ -1,7 +1,6 @@
 using TreeOfThought.Abstractions;
-using TreeOfThought.Handlers;
 
-namespace tree_of_thought_tests;
+namespace TreeOfThought.Tests;
 
 public class TestHandler : IProblemHandler
 {

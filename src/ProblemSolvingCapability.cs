@@ -1,4 +1,4 @@
-namespace TreeOfThought.Handlers;
+namespace TreeOfThought;
 
 public class ProblemSolvingCapability
 {

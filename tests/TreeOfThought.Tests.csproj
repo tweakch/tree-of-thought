@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>tree_of_thought_tests</RootNamespace>
+        <RootNamespace>TreeOfThought.Tests</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\tree-of-thought.csproj" />
+      <ProjectReference Include="..\src\TreeOfThought.csproj" />
     </ItemGroup>
 
 </Project>

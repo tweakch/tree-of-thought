@@ -5,6 +5,8 @@ using TreeOfThought.Services;
 
 var builder = Host.CreateApplicationBuilder(args);
 
+// TODO: Dependency Injection
+// builder.Services.AddSingleton<IChooseHandler, TestChooser>();
 builder.Services.AddHostedService<ExampleHostedService>();
 
 // TODO: 

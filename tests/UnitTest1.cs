@@ -1,7 +1,36 @@
+using Microsoft.Extensions.DependencyInjection;
 using TreeOfThought.Abstractions;
 using TreeOfThought.Handlers;
 
 namespace TreeOfThought.Tests;
+
+public class DITests
+{
+    // TODO: Refactor
+    public void Test()
+    {
+        IServiceCollection services = new ServiceCollection(); // Dependency Injection Container
+        services.AddTransient<Z,X>(); // lifetime
+        services.AddScoped<Z, X>(); // lifetime
+        services.AddSingleton<Z, X>(); // lifetime
+
+        var provider = services.BuildServiceProvider(); // builder pattern
+        var obj = provider.GetRequiredService<Z>(); // provider pattern
+        
+        Console.WriteLine(obj.Y);
+    }
+}
+
+interface Z
+{
+    string Y { get; set; }
+}
+
+class X : Z
+{
+    public string Y { get; set; }
+}
+
 
 public class Tests
 {

@@ -17,6 +17,13 @@ public class DITests
         var provider = services.BuildServiceProvider(); // builder pattern
         var obj = provider.GetRequiredService<Z>(); // provider pattern
         
+        // configure remote origin 
+        // change from https to ssh
+
+        // repository fork sample
+
+        // pull changes from remote branch feature/dependency-injection-akl
+        // git pull origin feature/dependency-injection-akl
         Console.WriteLine(obj.Y);
     }
 }

@@ -7,12 +7,15 @@ namespace TreeOfThought.Services;
 
 public sealed class ExampleHostedService : IHostedService
 {
+    private readonly HandlerChooser _chooser;
     private readonly ILogger _logger;
 
     public ExampleHostedService(
+        HandlerChooser chooser,
         ILogger<ExampleHostedService> logger,
         IHostApplicationLifetime appLifetime)
     {
+        _chooser = chooser;
         _logger = logger;
 
         appLifetime.ApplicationStarted.Register(OnStarted);
@@ -23,6 +26,7 @@ public sealed class ExampleHostedService : IHostedService
     public Task StartAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("1. StartAsync has been called");
+        _chooser.ChooseHandler(new[] { "" });
         
         string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
 
@@ -33,18 +37,9 @@ public sealed class ExampleHostedService : IHostedService
             return Task.CompletedTask;
         }
 
-        var handlers = new Dictionary<string, IProblemHandler>
-        {
-            { "file", new FileAndFolderProblemHandler() },
-            { "console", new ConsoleProblemHandler() },
-            { "youtrack", new YouTrackProblemHandler() },
-            { "github", new GitHubProblemHandler() }
-        };
-
-        var chooser = new HandlerChooser(handlers);
 
         // choose the handler
-        var problemHandler = chooser.ChooseHandler(args);
+        var problemHandler = _chooser.ChooseHandler(args);
 
         // intialize the argument processor
         var argumentProcessor = new ArgumentProcessor();
